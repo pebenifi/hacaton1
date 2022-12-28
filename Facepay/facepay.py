@@ -3,7 +3,7 @@ import face_recognition
 import cv2
 import os
 from datetime import datetime
-
+i = 1
 path = 'Facepay/KnownFaces'
 images = []
 classNames = []
@@ -43,6 +43,7 @@ print("Декодирование закончено")
 cap = cv2.VideoCapture(0)
 
 while True:
+    key = cv2.waitKey(1)
     success, img = cap.read()
     imgS = cv2.resize(img, (0, 0), None, 0.25, 0.25)
     imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
@@ -67,4 +68,13 @@ while True:
             markAttendance(name)
 
     cv2.imshow("FacePay", img)
-    cv2.waitKey(1)
+    if cv2.waitKey(1) == ord('m'):
+        print(i)
+        i += 1
+    if cv2.waitKey(1) == ord('n'):
+        print(i)
+        i += 1
+    if cv2.waitKey(1) == ord('q'):
+        print("end")
+        break
+cv2.destroyAllWindows()
